@@ -3,54 +3,61 @@ import styled from "styled-components";
 
 function NewMail() {
 
+
   function submitEvent(e) {
 
     e.preventDefault();
-  
+
     const inputs = e.target.querySelectorAll(".inputField"), values = {};
-  
+
     // UPLOADING VALUES OBJECT WITH INPUT FIELD VALUES (a kulcsok az inputuk nevei, a valuek pedig az értékei)
-  
+
     for (const input of inputs) {
       values[`${input.name}`] = input.value;
     };
-  
-  
-    // CREATE FROMDATA TO USE IN FETCH BODY
-  
-    const formData = new FormData();
-  
-    formData.append('from', values.from);
-    formData.append('to', values.to);
-    formData.append('message', values.message);
-    formData.append('reference', values.reference);
-  
-    
+
+
     // FETCH
-  
+
     fetch('http://localhost:8080/api/mails', {
       method: 'Post',
       headers: {
-          'Content-Type': 'application/json'
+        'Content-Type': 'application/json'
       },
-      body: formData
+      body: JSON.stringify(values)
     })
-      .then(response => response.text())
-      .then(data => console.log(data));
+      // The request body should be a JSON string while the headers should be a JSON object. If you don't stringify your objects before passing them to body you will just send "[object Object]".
+      .then(response => {
+        if (response.status === 400) {
+          document.getElementById("errorText").innerHTML = "This reference number already belongs to an existing mail"
+        } else {
+          document.getElementById("errorText").innerHTML = "";
+          document.getElementById("sentText").innerHTML = "Sent!"
+        }
+        return response.json()
+      })
+      .then(data => {
+        console.log('Success:', data)
+      })
+      .catch((error) => {
+        console.error('Error:', error)
+      });
   };
 
 
   return (
     <Container id="form" onSubmit={submitEvent}>
 
-			<input name="reference" class="inputField" pattern="[0-9]" autocomplete="off" placeholder="Reference Number"/>
-			<input name="to" class="inputField" type="text" autocomplete="off" placeholder="To"/>
-			<input name="from" class="inputField" type="text" autocomplete="off" placeholder="From"/>
-			<textarea name="message" class="inputField" autocomplete="off" placeholder="Message"></textarea>		
-			
-			<button id="send" type="submit">Send</button>
+      <input name="reference" class="inputField" type="text" pattern="[0-9]{1,}" autocomplete="off" placeholder="Reference Number" />
+      <div id="errorText"></div>
+      <input name="to" class="inputField" type="text" autocomplete="off" placeholder="To" />
+      <input name="from" class="inputField" type="text" autocomplete="off" placeholder="From" />
+      <textarea name="message" class="inputField" autocomplete="off" placeholder="Message"></textarea>
 
-		</Container>
+      <button id="send" type="submit">Send</button>
+      <div id="sentText"></div>
+
+    </Container>
   );
 
 }
@@ -61,7 +68,7 @@ const Container = styled.form`
   justify-content: center;
   align-items: center;
 
-  width: 400px;
+  width: 500px;
   height: 500px;
 
   position: absolute;
@@ -71,16 +78,16 @@ const Container = styled.form`
 
 
     & input, textarea {
-      width: 70%;
+      width: 80%;
       padding: 0.5em;
       margin: 10px 0;
       border-radius: 5px;
       text-align: center;
-      font-size: 16px;
+      font-size: 22px;
       border: 1px solid grey;
 
       &:hover, &:focus, &:active {
-        font-size: 16px;
+        font-size: 22px;
         text-align: center;
         border: 1px solid grey;
         outline: none
@@ -88,25 +95,39 @@ const Container = styled.form`
 
       &::placeholder {
         text-align: center;
-        font-size: 16px;
-        font-family: 'Montserrat'
+        font-size: 22px;
+        font-family: 'Special Elite', cursive;
       }
     };
   
     & button {
       width: 30%;
       padding: 0.5em;
-      margin: 5px 0;
+      margin: 15px 0;
       border-radius: 5px;
       text-align: center;
-      font-size: 16px;
-      border: 1px solid grey;
-      background-color: white;
+      font-size: 22px;
+      font-weight: bold;
+      border: 1px solid #fca311;
+      color:  #fca311;
 
       &:active{
-        border: 1px solid darkgrey;
+        border: 1px solid #14213d;;
+        color: #14213d;
       }
     };
+
+  & #errorText {
+    font-size: 20px;
+    color: red;
+    text-align: center;
+  };
+
+  & #sentText {
+    font-size: 20px;
+    color: green;
+    text-align: center;
+  }
     
 `
 

@@ -28,9 +28,10 @@ const NavBar = styled.nav`
   display: flex;
   position: fixed;
   width: 100%;
-  height: 90px;
+  height: 70px;
   background-color: #14213d;
   box-shadow: 0 5px 5px #071022;
+	border-radius: 0 0 100px 100px;
   z-index: 2;
 
  & ul {

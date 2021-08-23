@@ -31,11 +31,12 @@ function MailList() {
 
 const Container = styled.div`
   position: absolute;
-  top: 18%;
+  top: 20%;
   left: 50%;
   transform: translateX(-50%);
 
   width: 500px;
+  padding-bottom: 100px;
 
     & h2 {
     font-size: 30px;

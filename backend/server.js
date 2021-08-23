@@ -25,12 +25,12 @@ const mails = [
 		from: "Kossuth Lajos", to: "Magyarok", message: "Elfogyott a regimentem :(", reference: 152436
 	},
 	{
-		from: "Bátor a gyáva kutya", to: "Muriel", message: "Vakk", reference: 152999
+		from: "Bátor a gyáva kutya", to: "Muriel", message: "Vakk", reference: 112999
 	},
 	{
-		from: "Hupikék Törpikék", to: "Hókuszpók", message: "Mi vagyunk az icikék, mi vagyunk a picikék, a hupikék törpikék", reference: 152999
-	},
-]
+		from: "Hupikék Törpikék", to: "Hókuszpók", message: "Mi vagyunk az icikék, mi vagyunk a picikék, a hupikék törpikék", reference: 672939
+	}
+];
 
 // MAILS GET
 
@@ -47,7 +47,7 @@ server.get('/api/mails/:refNum', function (req, res) {
 	if (found.length > 0) {
 		res.json(found);
 	} else {
-		res.status(404).json({ msg: "No message found with the given reference number"});
+		res.status(404).json({ msg: "No mail found with the given reference number" });
 	}
 });
 
@@ -61,14 +61,11 @@ server.post('/api/mails', (req, res) => {
 	const refNum = req.body.reference
 	const filteredMails = mails.some(mail => mail.reference === parseInt(refNum));
 
-	if (filteredMails) {
-
-		res.status(404).json({ msg: "Reference number already exists"});
-
+ 	if (filteredMails) {
+		res.status(400).json({ msg: "Reference number already exists" });
 	} else {
-
 		mails.push(req.body)
-		res.json(mails)
+		res.end()
 	}
 
 });

@@ -7,6 +7,7 @@ import NewMail from "./components/NewMail";
 import Search from "./components/Search";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
+import stamp from "./stamp.png";
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
                 <SearchFunction />
               </Route>
             </Switch>
+            <img src={stamp} alt="vintage stamp"></img>
           </div>
           <Footer />
         </div>

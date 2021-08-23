@@ -39,6 +39,10 @@ const Mails = styled.ul`
   	height: 0.5px;
 	}
 
+	& div {
+		margin-top: 15px;
+	}
+
 `
 
 export default ListItem;

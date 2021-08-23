@@ -52,20 +52,28 @@ select {
 
 
 body{
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Special Elite', cursive;
   font-weight: 500;
   font-size: 16px;
-  background-color: #e5e5e5;
+  background-color: rgb(236, 224, 212);
 }
 
-#container {
+.container {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
 }
 
-#main {
-  flex-grow: 1;
+.main {
+  flex: 1;
 }
 
+img{
+  height: 15%;
+  z-index: 2;
+  position: fixed;
+  top: 70%;
+  right: 0%;
+  transform: rotate(-25deg);
+}
 

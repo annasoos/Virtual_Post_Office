@@ -17,10 +17,11 @@ const FooterContainer = styled.footer`
   position: fixed;
   bottom: 0;
   width: 100%;
-  height: 90px;
+  height: 70px;
 
   background-color: #14213d;
   box-shadow: 0 -5px 5px #071022;
+  border-radius: 100px 100px 0 0;
   font-size: 14px;
   color: #fca311;
 `
