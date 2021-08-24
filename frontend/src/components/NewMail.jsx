@@ -20,23 +20,22 @@ function NewMail() {
 
     // FETCH
 
-    await axios.post('http://localhost:8080/api/mails', values)
-      .then(response => {
-        console.log(response)
-        if (response.status === 200) {
-          console.log("Success")
-          toast.success("Mail sent successfully!", { position: toast.POSITION.BOTTOM_CENTER });
-        }
-      })
-      .catch(error => {
-        console.log("An error occured: ", error.response)
-
-        if (error.response.status === 400) {
-          toast.error("En error occured! Please try again!", { position: toast.POSITION.BOTTOM_CENTER })
-        } else if (error.response.status === 409) {
-          toast.error("Reference number already exists! Please choose another one!", { position: toast.POSITION.BOTTOM_CENTER })
-        }
-      });
+    try {
+      let response = await axios.post('http://localhost:8080/api/mails', values)
+      if (response.status === 200) {
+      console.log("Success")
+      toast.success("Mail sent successfully!", { position: toast.POSITION.BOTTOM_CENTER });
+      }
+    }
+    catch (error) {
+      if (error.response.status === 400) {
+        toast.error("En error occured! Please try again!", { position: toast.POSITION.BOTTOM_CENTER })
+      } else if (error.response.status === 409) {
+        toast.error("Reference number already exists! Please choose another one!", { position: toast.POSITION.BOTTOM_CENTER })
+      } else {
+        console.log("An error occured: ", error)
+      }
+    }
   };
 
   return (

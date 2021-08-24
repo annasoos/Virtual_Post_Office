@@ -25,8 +25,6 @@ The goal is to send the mails to a server, save them and be able to search among
 
 ## TODO / Additional features
 
-- At the moment the mails are kept in an array server side. Should move them to an external database
+- At the moment the mail list is kept in an array server side. Should move them to an external database (eg. local JSON database lowdb)
 - Add registration/login function with authentication and session handling
-- Add better notification solution (eg. react-toastify package) to display server responses to user
 - Improve responsivity
-- Improve design
