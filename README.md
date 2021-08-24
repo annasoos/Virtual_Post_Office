@@ -19,12 +19,12 @@ The goal is to send the mails to a server, save them and be able to search among
 
 - React.js
 - Express.js
+- Lowdb
 - Semantic HTML5 markup
 - Styled-components & SCSS
 - Flexbox
 
 ## TODO / Additional features
 
-- At the moment the mail list is kept in an array server side. Should move them to an external database (eg. local JSON database lowdb)
 - Add registration/login function with authentication and session handling
 - Improve responsivity

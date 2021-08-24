@@ -1,0 +1,28 @@
+{
+  "mails": [
+    {
+      "from": "John Doe",
+      "to": "Mary Louise",
+      "message": "Dear Mary, Please send me the necessary documents so I can finalize the contract. Thank you, John",
+      "reference": 762335
+    },
+    {
+      "from": "Jane Doe",
+      "to": "John Doe",
+      "message": "Hi John! I will be waiting for you at the train station at 9 o'clock tomorrow. Love, Jane",
+      "reference": 983658
+    },
+    {
+      "from": "Elliot Stevens",
+      "to": "Nick Ford",
+      "message": "Nick, please call me ASAP! Elliot",
+      "reference": 152436
+    },
+    {
+      "from": "Amy Johnson",
+      "to": "Ronald Schultz",
+      "message": "Ron! I called you two weeks ago...Can you please call me back? It's important! Amy",
+      "reference": 112999
+    }
+  ]
+}
