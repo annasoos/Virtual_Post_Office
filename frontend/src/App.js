@@ -7,7 +7,6 @@ import NewMail from "./components/NewMail";
 import Search from "./components/Search";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
-import stamp from "./media/stamp.png";
 
 function App() {
 
@@ -21,55 +20,22 @@ function App() {
           <div className="main">
             <Switch>
               <Route exact path="/">
-                <HomePageFunction />
+                <HomePage />
               </Route>
               <Route exact path="/mail-list">
-                <ListMailsFunction />
+                <MailList />
               </Route>
               <Route exact path="/new">
-                <NewMailFunction />
+                <NewMail />
               </Route>
               <Route exact path="/search">
-                <SearchFunction />
+                <Search />
               </Route>
             </Switch>
-            <img src={stamp} alt="vintage stamp"></img>
           </div>
           <Footer />
         </div>
       </Router>
-    </>
-  );
-};
-
-function HomePageFunction() {
-  return (
-    <>
-      <HomePage />
-    </>
-  );
-};
-
-function ListMailsFunction() {
-  return (
-    <>
-      <MailList />
-    </>
-  );
-};
-
-function NewMailFunction() {
-  return (
-    <>
-      <NewMail />
-    </>
-  );
-};
-
-function SearchFunction() {
-  return (
-    <>
-      <Search />
     </>
   );
 };

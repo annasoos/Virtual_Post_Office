@@ -19,11 +19,11 @@ const FooterContainer = styled.footer`
   width: 100%;
   height: 70px;
 
-  background-color: #14213d;
-  box-shadow: 0 -5px 5px #071022;
+  background-color: rgb(2, 78, 91);
+  box-shadow: 0 -5px 5px rgb(2, 60, 70);
   border-radius: 100px 100px 0 0;
   font-size: 14px;
-  color: #fca311;
+  color: white;
 `
 
 export default Footer;

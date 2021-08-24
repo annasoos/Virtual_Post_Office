@@ -68,10 +68,10 @@ const Container = styled.div`
   padding-bottom: 100px;
   transform: translateX(-50%);
 
-
     & h2 {
     font-size: 30px;
-    color: #fca311;
+    font-weight: 500;
+    color: rgb(2, 60, 70);
     text-align: center;
     margin-bottom: 60px;
     };
@@ -80,38 +80,40 @@ const Container = styled.div`
       width: 80%;
       padding: 0.5em;
       border-radius: 5px;
+      border: 1px solid rgb(2, 78, 91);
+
       text-align: center;
       font-size: 22px;
-      border: 1px solid grey;
+      color: rgb(2, 78, 91);
 
-      &:hover, &:focus, &:active {
-        font-size: 22px;
-        text-align: center;
-        border: 1px solid grey;
-        outline: none
+      &:focus, &:active {
+        border: 1px solid white;
       }
 
       &::placeholder {
         text-align: center;
+        color: rgb(2, 78, 91);
         font-size: 22px;
-        font-family: 'Special Elite', cursive;
       }
     };
   
     & button {
       width: 30%;
       padding: 0.5em;
-      margin: 25px 0 60px 0;
-      border-radius: 5px;
+      margin: 60px 0;
+
       text-align: center;
       font-size: 22px;
-      font-weight: bold;
-      border: 1px solid #fca311;
-      color:  #fca311;
+
+      border-radius: 5px;
+      border: 1px solid white;
+      color: white;
+      background-color: rgb(2, 78, 91);
 
       &:active{
-        border: 1px solid #14213d;;
-        color: #14213d;
+        border: 1px solid rgb(2, 78, 91);;
+        color: rgb(2, 78, 91);
+        background-color: transparent;
       }
     };
 

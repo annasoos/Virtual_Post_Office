@@ -40,7 +40,8 @@ const Container = styled.div`
 
     & h2 {
     font-size: 30px;
-    color: #fca311;
+    font-weight: 500;
+    color: rgb(2, 60, 70);
     text-align: center;
     margin-bottom: 60px;
     };

@@ -29,8 +29,9 @@ const NavBar = styled.nav`
   position: fixed;
   width: 100%;
   height: 70px;
-  background-color: #14213d;
-  box-shadow: 0 5px 5px #071022;
+
+  background-color: rgb(2, 78, 91);
+  box-shadow: 0 5px 5px rgb(2, 60, 70);
 	border-radius: 0 0 100px 100px;
   z-index: 2;
 
@@ -44,16 +45,15 @@ const NavBar = styled.nav`
 
  & ul, li {
   font-size: 22px;
-  font-weight: bold;
   list-style-type: none;
 	}
 
  & ul li a {
-  color: #fca311
+  color: white;
 	}
 
  & ul li a:hover {
-  color: white
+  color: rgb(5, 190, 220);
 	}
 
 `

@@ -23,18 +23,18 @@ const Mails = styled.ul`
 
 	& li {
 		font-size: 18px;
-    color: #14213d;
+    color: rgb(2, 78, 91);
   };
 	
 	& h3 {
     font-size: 20px;
-    color: #14213d;
+    color: rgb(2, 78, 91);
     };
 	
 	& hr {
 		width: 600px;
 		margin: 25px 0;
-		background-color: #fca311;
+		background-color: white;
 		border: 0;
   	height: 0.5px;
 	}

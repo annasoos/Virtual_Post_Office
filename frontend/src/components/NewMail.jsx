@@ -76,44 +76,49 @@ const Container = styled.form`
   left: 50%;
   transform: translate(-50%, -50%);
 
-
     & input, textarea {
       width: 80%;
       padding: 0.5em;
       margin: 10px 0;
       border-radius: 5px;
+      border: 1px solid rgb(2, 78, 91);
+
       text-align: center;
       font-size: 22px;
-      border: 1px solid grey;
+      color: rgb(2, 78, 91);
 
-      &:hover, &:focus, &:active {
-        font-size: 22px;
-        text-align: center;
-        border: 1px solid grey;
-        outline: none
+      &:focus, &:active {
+        border: 1px solid white;
       }
 
       &::placeholder {
         text-align: center;
+        color: rgb(2, 78, 91);
         font-size: 22px;
-        font-family: 'Special Elite', cursive;
       }
     };
+
+    & textarea {
+      height: 400px;
+    }
   
     & button {
       width: 30%;
       padding: 0.5em;
       margin: 15px 0;
-      border-radius: 5px;
+
       text-align: center;
       font-size: 22px;
-      font-weight: bold;
-      border: 1px solid #fca311;
-      color:  #fca311;
+
+      border-radius: 5px;
+      border: 1px solid white;
+      color: white;
+      background-color: rgb(2, 78, 91);
 
       &:active{
-        border: 1px solid #14213d;;
-        color: #14213d;
+        border: 1px solid rgb(2, 78, 91);;
+        color: rgb(2, 78, 91);
+        background-color: transparent;
       }
     };
 

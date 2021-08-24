@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 /* ----------RESET START---------- */
 
@@ -50,12 +51,25 @@ select {
 
 /* ----------RESET END---------- */
 
-
-body{
-  font-family: 'Special Elite', cursive;
-  font-weight: 500;
+body {
+  font-family: "Poppins", san-serif;
+  font-weight: 300;
   font-size: 16px;
-  background-color: rgb(236, 224, 212);
+  background-color: rgb(158, 219, 248);
+}
+
+body::before{
+  content: "";
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  opacity: 0.8;
+  background-image: url("./media/bottle.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .container {
@@ -67,13 +81,3 @@ body{
 .main {
   flex: 1;
 }
-
-img{
-  height: 15%;
-  z-index: 2;
-  position: fixed;
-  top: 70%;
-  right: 0%;
-  transform: rotate(-25deg);
-}
-
