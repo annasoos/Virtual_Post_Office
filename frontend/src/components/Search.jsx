@@ -3,12 +3,13 @@ import styled from "styled-components";
 import ListItem from './ListItem';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios';
 
 function Search() {
 
   const [state, setState] = useState([]);
 
-  const clickEvent = (e) => {
+  const clickEvent = async (e) => {
 
     e.preventDefault();
 
@@ -18,22 +19,20 @@ function Search() {
 
     // FETCH
 
-    fetch(url)
-      .then(response => {
-        if(response.status === 200){
-          return response.json()
-        } else {
-          throw new Error(`No mail found with the given reference number!`);
-        }
-      })
-      .then(data => {
-        console.log('Success:', data);
-        setState(data)
-      })
-      .catch((error) => {
-        console.error('Error: ', error);
+    try {
+      let response = await axios.get(url);
+      if (response.status === 200) {
+        setState(response.data)
+      }
+    } 
+    catch (error) {
+      if (error.response.status === 404) {
         toast.error("No mail found with the given reference number!", { position: toast.POSITION.BOTTOM_CENTER })
-      });
+      } else {
+        console.log("Error: ", error)
+      }
+    }
+
   };
 
   return (
