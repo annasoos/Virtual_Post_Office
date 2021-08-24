@@ -62,7 +62,7 @@ server.post('/api/mails', (req, res) => {
 	const filteredMails = mails.some(mail => mail.reference === parseInt(refNum));
 
  	if (filteredMails) {
-		res.status(400).json({ msg: "Reference number already exists" });
+		res.status(409).json({ msg: "Reference number already exists" });
 	} else {
 		mails.push(req.body)
 		res.end()

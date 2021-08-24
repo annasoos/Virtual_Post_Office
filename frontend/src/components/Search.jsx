@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import ListItem from './ListItem';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Search() {
 
@@ -9,13 +11,13 @@ function Search() {
   function clickEvent(e) {
 
     e.preventDefault();
-  
+
     const inputNum = document.getElementById("searchInput");
     const url = 'http://localhost:8080/api/mails/' + inputNum.value;
     console.log(url)
-    
+
     // FETCH
-  
+
     fetch(url, {
       method: 'GET',
       headers: {
@@ -23,12 +25,10 @@ function Search() {
       },
     })
       .then(response => {
-        if(response.status === 404) {
-          document.getElementById("errorText").innerHTML = "No mail found with the given reference number";
+        if (response.status === 404) {
+          toast.error("No mail found with the given reference number!", { position: toast.POSITION.BOTTOM_CENTER	})
           setState([])
-        } else {
-          document.getElementById("errorText").innerHTML = ""
-        }
+        } 
         return response.json()
       })
       .then(data => setState(data))
@@ -47,9 +47,9 @@ function Search() {
 
       <button id="send" type="submit" onClick={clickEvent}>Search</button>
 
-      <div id="errorText"></div>
+      <ToastContainer />
 
-      <ListItem data={state}/>
+      <ListItem data={state} />
 
     </Container>
   );
@@ -74,22 +74,18 @@ const Container = styled.div`
     color: rgb(2, 60, 70);
     text-align: center;
     margin-bottom: 60px;
-    };
-
+    };  
     & input {
       width: 80%;
       padding: 0.5em;
       border-radius: 5px;
-      border: 1px solid rgb(2, 78, 91);
-
+      border: 1px solid rgb(2, 78, 91); 
       text-align: center;
       font-size: 22px;
-      color: rgb(2, 78, 91);
-
+      color: rgb(2, 78, 91);  
       &:focus, &:active {
         border: 1px solid white;
-      }
-
+      } 
       &::placeholder {
         text-align: center;
         color: rgb(2, 78, 91);
@@ -100,28 +96,19 @@ const Container = styled.div`
     & button {
       width: 30%;
       padding: 0.5em;
-      margin: 60px 0;
-
+      margin: 60px 0; 
       text-align: center;
-      font-size: 22px;
-
+      font-size: 22px;  
       border-radius: 5px;
       border: 1px solid white;
       color: white;
-      background-color: rgb(2, 78, 91);
-
+      background-color: rgb(2, 78, 91); 
       &:active{
         border: 1px solid rgb(2, 78, 91);;
         color: rgb(2, 78, 91);
         background-color: transparent;
       }
     };
-
-  & #errorText {
-    font-size: 20px;
-    color: red;
-    text-align: center;
-  }
     
 `
 
