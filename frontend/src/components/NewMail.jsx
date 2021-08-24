@@ -2,11 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios';
 
 function NewMail() {
 
-
-  function submitEvent(e) {
+  const submitEvent = async (e) => {
 
     e.preventDefault();
 
@@ -18,47 +18,42 @@ function NewMail() {
       values[`${input.name}`] = input.value;
     };
 
-
     // FETCH
 
-    fetch('http://localhost:8080/api/mails', {
-      method: 'Post',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(values)
-    })
-      // The request body should be a JSON string while the headers should be a JSON object. If you don't stringify your objects before passing them to body you will just send "[object Object]".
-      .then(response => {
-        if (response.status === 409) {
-          toast.error("Reference number already exists! Please choose another one.", { position: toast.POSITION.BOTTOM_CENTER });
-        } else {
+    await axios.post('http://localhost:8080/api/mails', values)
+      .then(res => {
+        console.log(res)
+        if (res.status === 200) {
+          console.log("Success")
           toast.success("Mail sent successfully!", { position: toast.POSITION.BOTTOM_CENTER });
         }
-        return response.json()
       })
-      .then(data => {
-        console.log('Success:', data)
-      })
-      .catch((error) => {
-        console.error('Error:', error)
+      .catch(error => {
+        console.log("An error occured: ", error.response)
+
+        if (error.response.status === 400) {
+          toast.error("En error occured! Please try again!", { position: toast.POSITION.BOTTOM_CENTER })
+        } else if (error.response.status === 409) {
+          toast.error("Reference number already exists! Please choose another one!", { position: toast.POSITION.BOTTOM_CENTER })
+        }
       });
   };
 
-
   return (
-    <Container id="form" onSubmit={submitEvent}>
-
-      <input name="reference" class="inputField" type="text" pattern="[0-9]{1,}" autocomplete="off" placeholder="Reference Number" />
-      <input name="to" class="inputField" type="text" autocomplete="off" placeholder="To" />
-      <input name="from" class="inputField" type="text" autocomplete="off" placeholder="From" />
-      <textarea name="message" class="inputField" autocomplete="off" placeholder="Message"></textarea>
-
-      <button id="send" type="submit">Send</button>
-
+    <>
       <ToastContainer />
 
-    </Container>
+      <Container id="form" onSubmit={submitEvent}>
+
+        <input name="reference" class="inputField" type="text" pattern="[0-9]{1,}" autocomplete="off" placeholder="Reference Number" />
+        <input name="to" class="inputField" type="text" autocomplete="off" placeholder="To" />
+        <input name="from" class="inputField" type="text" autocomplete="off" placeholder="From" />
+        <textarea name="message" class="inputField" autocomplete="off" placeholder="Message"></textarea>
+
+        <button id="send" type="submit">Send</button>
+
+      </Container>
+    </>
   );
 
 }
@@ -118,4 +113,4 @@ const Container = styled.form`
   
 `
 
-export default NewMail;
+export default NewMail

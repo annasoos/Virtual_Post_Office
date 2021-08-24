@@ -4,15 +4,15 @@ const server = express();
 
 // STATIC 
 
-server.use(express.static(path.join(__dirname, '../frontend/build/static')));
+server.use(express.static(path.join(__dirname, '../frontend/build/')));
 
 // INDEX ENDPOINT
 
 server.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "../frontend/build/index.html"));
+	res.sendFile(path.join(__dirname, "../frontend/build/index.html"));
 });
 
-// MAILS
+// MAILS ARRAY
 
 const mails = [
 	{
@@ -32,7 +32,7 @@ const mails = [
 	}
 ];
 
-// MAILS GET
+// GET ALL MAILS
 
 server.get('/api/mails', function (req, res) {
 	res.send(mails)
@@ -45,13 +45,13 @@ server.get('/api/mails/:refNum', function (req, res) {
 	let found = mails.filter(mail => mail.reference === parseInt(req.params.refNum));
 	
 	if (found.length > 0) {
-		res.json(found);
+		res.status(200).json(found);
 	} else {
 		res.status(404).json({ msg: "No mail found with the given reference number" });
 	}
 });
 
-// MAILS POST
+// POST NEW MAIL
 
 server.use(express.json());
 server.use(express.urlencoded({ extended: false }));
@@ -59,13 +59,13 @@ server.use(express.urlencoded({ extended: false }));
 server.post('/api/mails', (req, res) => {
 
 	const refNum = req.body.reference
-	const filteredMails = mails.some(mail => mail.reference === parseInt(refNum));
+	const filteredMails = mails.some(mail => mail.reference === refNum);
 
  	if (filteredMails) {
 		res.status(409).json({ msg: "Reference number already exists" });
 	} else {
 		mails.push(req.body)
-		res.end()
+		res.status(200).json({ msg: "Success" })
 	}
 
 });

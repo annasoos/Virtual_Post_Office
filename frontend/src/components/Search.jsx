@@ -3,12 +3,13 @@ import styled from "styled-components";
 import ListItem from './ListItem';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios';
 
 function Search() {
 
   const [state, setState] = useState([]);
 
-  function clickEvent(e) {
+  const clickEvent = async (e) => {
 
     e.preventDefault();
 
@@ -18,40 +19,35 @@ function Search() {
 
     // FETCH
 
-    fetch(url, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then(response => {
-        if (response.status === 404) {
-          toast.error("No mail found with the given reference number!", { position: toast.POSITION.BOTTOM_CENTER	})
-          setState([])
-        } 
-        return response.json()
-      })
+    await axios.get(url)
+      .then(res => res.json())
       .then(data => setState(data))
       .catch((error) => {
-        console.error('Error:', error);
+        if (error.response.status === 404) {
+          console.error('Error:', error);
+          toast.error("No mail found with the given reference number!", { position: toast.POSITION.BOTTOM_CENTER })
+          setState([])
+        }
       });
   };
 
 
   return (
-    <Container>
-
-      <h2>Type in a reference number:</h2>
-
-      <input name="reference" type="text" id="searchInput" pattern="[0-9]{1,}" autocomplete="off" placeholder="Reference Number" />
-
-      <button id="send" type="submit" onClick={clickEvent}>Search</button>
-
+    <>
       <ToastContainer />
 
-      <ListItem data={state} />
+      <Container>
 
-    </Container>
+        <h2>Type in a reference number:</h2>
+
+        <input name="reference" type="text" id="searchInput" pattern="[0-9]{1,}" autocomplete="off" placeholder="Reference Number" />
+
+        <button id="send" type="submit" onClick={clickEvent}>Search</button>
+
+        <ListItem data={state} />
+
+      </Container>
+    </>
   );
 }
 

@@ -37,7 +37,6 @@ const NavBar = styled.nav`
 
  & ul {
   width: 100%;
-  padding-left: 100px;
   display: flex;
   justify-content: space-around;
   align-items: center;

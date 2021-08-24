@@ -22,12 +22,12 @@ const Mails = styled.ul`
 	list-style-type:none;
 
 	& li {
-		font-size: 18px;
+		font-size: 20px;
     color: rgb(2, 78, 91);
   };
 	
 	& h3 {
-    font-size: 20px;
+    font-size: 22px;
     color: rgb(2, 78, 91);
     };
 	
