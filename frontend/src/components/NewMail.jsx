@@ -21,9 +21,9 @@ function NewMail() {
     // FETCH
 
     await axios.post('http://localhost:8080/api/mails', values)
-      .then(res => {
-        console.log(res)
-        if (res.status === 200) {
+      .then(response => {
+        console.log(response)
+        if (response.status === 200) {
           console.log("Success")
           toast.success("Mail sent successfully!", { position: toast.POSITION.BOTTOM_CENTER });
         }
