@@ -4,31 +4,31 @@ const server = express();
 
 // STATIC 
 
-server.use('/static', express.static(path.join(__dirname, '../frontend/build/static')));
+server.use(express.static(path.join(__dirname, '../frontend/build/static')));
 
 // INDEX ENDPOINT
 
-server.get('/', (req, res) => {
-  res.sendFile('index.html', {root: path.join(__dirname, '../frontend/build/')});
+server.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/build/index.html"));
 });
 
 // MAILS
 
 const mails = [
 	{
-		from: "Captain America", to: "Avangers", message: "Avangers assemble!", reference: 762335
+		from: "John Doe", to: "Mary Louise", message: "Dear Mary, Please send me the necessary documents so I can finalize the contract. Thank you, John", reference: 762335
 	},
 	{
-		from: "Pocahontas", to: "John Smith", message: "Messze hív a nagy folyó", reference: 983658
+		from: "Jane Doe", to: "John Doe", message: "Hi John! I will be waiting for you at the train station at 9 o'clock tomorrow. Love, Jane", reference: 983658
 	},
 	{
-		from: "Kossuth Lajos", to: "Magyarok", message: "Elfogyott a regimentem :(", reference: 152436
+		from: "Elliot Stevens", to: "Nick Ford", message: "Nick, please call me ASAP! Elliot", reference: 152436
 	},
 	{
-		from: "Bátor a gyáva kutya", to: "Muriel", message: "Vakk", reference: 112999
+		from: "Amy Johnson", to: "Ronald Schultz", message: "Ron! I called you two weeks ago...Can you please call me back? It's important! Amy", reference: 112999
 	},
 	{
-		from: "Hupikék Törpikék", to: "Hókuszpók", message: "Mi vagyunk az icikék, mi vagyunk a picikék, a hupikék törpikék", reference: 672939
+		from: "Clark Evergreen", to: "Amanda Evergreen", message: "My lovely Amanda, I love you very much! See you soon! Clark", reference: 672939
 	}
 ];
 
