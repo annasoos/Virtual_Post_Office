@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import background from "../vintage.jpg"
+import background from "../media/vintage.jpg"
 
 function HomePage() {
 

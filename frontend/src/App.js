@@ -7,7 +7,7 @@ import NewMail from "./components/NewMail";
 import Search from "./components/Search";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
-import stamp from "./stamp.png";
+import stamp from "./media/stamp.png";
 
 function App() {
 

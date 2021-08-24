@@ -2,7 +2,7 @@
 
 ## Description
 
-This is a simple application that helps file the mails in an imaginary post office.
+This application helps file the mails in an imaginary post office.
 The goal is to send the mails to a server, save them and be able to search among them.
 
 ## Implementation
@@ -15,9 +15,18 @@ The goal is to send the mails to a server, save them and be able to search among
 - When we send a mail object with a reference number already existing in the list of mails, the server returns with a status code 400
 - When we send a get request to the endpoint("/api/mails/#refNumber"), the server returns a JSON with the mail with the given reference number (if it exists)
 
+### Built with
+
+- React.js
+- Express.js
+- Semantic HTML5 markup
+- Styled-components & SCSS
+- Flexbox
+
 ## TODO / Additional features
 
-- Right now the mails are kept in an array server side. Should move them to an external database
+- At the moment the mails are kept in an array server side. Should move them to an external database
 - Add registration/login function with authentication and session handling
 - Add better notification solution (eg. react-toastify package) to display server responses to user
-- Responsivity
+- Improve responsivity
+- Improve design
